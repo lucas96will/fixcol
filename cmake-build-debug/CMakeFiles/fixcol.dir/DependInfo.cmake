@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/Lucas Williams/CLionProjects/fixcol/fixcol.c" "C:/Users/Lucas Williams/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/fixcol.dir/fixcol.c.obj"
+  "/home/lucas/CLionProjects/fixcol/fixcol.c" "/home/lucas/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/fixcol.dir/fixcol.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
