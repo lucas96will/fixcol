@@ -29,7 +29,7 @@ int fixcol(int columnas, FILE* entrada){
     }
 
     /*Por cada cadena de columnas +1 (del /0) de largo
-     * imprimo por stdout, (Reemplazo el \n de todas las cadenas posibles)*/
+     * imprimo por stdout, (No imprimo lineas vacias, de 1 caracter del \n)*/
     char linea[columnas+1];
     while(fgets(linea, columnas+1, archivo) != NULL){
         if(linea[strlen(linea)-1] == '\n'){
