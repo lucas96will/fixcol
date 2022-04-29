@@ -1,81 +1,84 @@
 #include "fixcol.h"
 #include <ctype.h>
 #include <string.h>
+#include <stdbool.h>
 
-#define CANT_BYTES 1
+#define CANT_CARACTERES 1
 #define NOMBRE_ARCHIVO 2
+#define MAX_ARGC 3
+#define MIN_ARGC 2
 
 /* Funcion para verificar si dado un string contiene solo numeros
- * Post: devuelve 1 si es un digito, 0 en otro caso*/
-int solo_digitos(const char* s);
-
-
-int solo_digitos(const char* s){
+ * Post: devuelve true si es un digito, 0 en otro caso*/
+bool solo_digitos(const char* s){
     while(*s){
         if(isdigit(*s++) == 0){
-            return 0;
+            return false;
         }
     }
-    return 1;
+    return true;
 }
 
+/*Imprime, por stderr, solo si el estado == false lo que hay en imprimir*/
+void imprimir_si_hay_error(bool estado, char* imprimir){
+    if(!estado){
+        fprintf(stderr, imprimir);
+    }
+}
 
-int fixcol(int columnas, FILE* entrada){
-    FILE* archivo = entrada;
+void imprimir_columnas(char* str){
+    if(str[strlen(str)-1] == '\n'){
+        str[strlen(str)-1] = '\0';
+    }
+    if(strlen(str) > 0 && str[0] != '\n'){
+        printf("%s\n", str);
+    }
+}
+
+void fixcol(int columnas, FILE* entrada){
     /*Si la entrada es NULL entonces hay un error*/
-    if(archivo == NULL){
+    if(entrada == NULL){
         fprintf(stderr, "Error: archivo fuente inaccesible\n");
-        return 2;
     }
 
     /*Por cada cadena de columnas +1 (del /0) de largo
      * imprimo por stdout, (No imprimo lineas vacias 0 de 1 caracter del \n)*/
     char linea[columnas+1];
-    while(fgets(linea, columnas+1, archivo) != NULL){
-        if(linea[strlen(linea)-1] == '\n'){
-            linea[strlen(linea)-1] = '\0';
-        }
-        if(strlen(linea) > 0 && linea[0] != '\n'){
-            printf("%s\n", linea);
-        }
+    while(fgets(linea, columnas+1, entrada) != NULL){
+        imprimir_columnas(linea);
     }
-
-    fclose(archivo);
-
-    return 0;
 }
 
+
+
+void fixcol_wrapp(int argc, char* argv[], int columnas){
+    if(argc == 2){
+        fixcol(columnas, stdin);
+    }
+
+    if(argc == 3){
+        FILE* archivo = fopen(argv[NOMBRE_ARCHIVO], "r");
+        fixcol(columnas, archivo);
+        fclose(archivo);
+    }
+}
 
 #ifndef FUNCION_MAIN_
 #define FUNCION_MAIN_
 
 int main(int argc, char* argv[]){
-    if(argc < 2 || argc > 3){
-        /*Valido que la cantidad de parametros sea la aceptada */
-        fprintf(stderr, "Error: Cantidad erronea de parametros\n");
-        return 2;
-    }
+    /*Valido si la cantidad de argumentos son correctos (min 2, max 3) y si el segundo parametro son solo digitos!*/
+    imprimir_si_hay_error(argc < MIN_ARGC || argc > MAX_ARGC, "Error: Cantidad erronea de parametros\n");
+    imprimir_si_hay_error(!solo_digitos(argv[CANT_CARACTERES]), "Error: Cantidad erronea de parametros\n");
 
-    /*Valido que el primer parametro sea un numerous*/
-    if(!solo_digitos(argv[CANT_BYTES])){
-        fprintf(stderr, "Error: Cantidad erronea de parametros\n");
-        return 2;
-    }
-
-    int columnas = atoi(argv[CANT_BYTES]);
-
+    int columnas = atoi(argv[CANT_CARACTERES]);
     if(columnas <= 0){
-        return 2;
+        return 0;
     }
 
-    if(argc == 2){
-        return fixcol(columnas, stdin);
-    }
+    //llamo a fixcol segun la cantidad de parametros (argc)
+    fixcol_wrapp(argc, argv, columnas);
 
-    if(argc == 3){
-        FILE* archivo = fopen(argv[NOMBRE_ARCHIVO], "r");
-        return fixcol(columnas, archivo);
-    }
     return 0;
 }
 

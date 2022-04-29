@@ -14,6 +14,6 @@
 //tenga una cantidad de columnas fijas de caracteres
 //(si no se le pasa ningun archivo este toma el standard input)
 //Devuelve 0 si no hubo error, 2 en otro caso abrir
-int fixcol(int columnas, FILE* entrada);
+void fixcol(int columnas, FILE* entrada);
 
 #endif //FIXCOL_FIXCOL_H
