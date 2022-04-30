@@ -19,12 +19,6 @@ bool solo_digitos(const char* s){
     return true;
 }
 
-/*Imprime, por stderr, solo si el estado == true lo que hay en imprimir*/
-void imprimir_si_hay_error(bool estado, char* imprimir){
-    if(estado){
-        fprintf(stderr, "%s", imprimir);
-    }
-}
 
 void imprimir_columnas(char* str){
     if(str[strlen(str)-1] == '\n'){
@@ -64,13 +58,16 @@ void fixcol_wrapp(int argc, char* argv[], int columnas){
 }
 
 bool hay_errores(int argc, char* argv[]){
-    bool cant_argc_incorrecta = (argc < MIN_ARGC || argc > MAX_ARGC);
-    bool argumento_solo_digitos = solo_digitos(argv[ARGUMENTO_CARACTERES]);
+    if(argc < MIN_ARGC || argc > MAX_ARGC){
+        fprintf(stderr, "Error: Cantidad erronea de parametros\n");
+        return true;
+    }
+    if(!solo_digitos(argv[ARGUMENTO_CARACTERES])){
+        fprintf(stderr, "Error: Cantidad erronea de parametros\n");
+        return true;
+    }
 
-    imprimir_si_hay_error(cant_argc_incorrecta, "Error: Cantidad erronea de parametros\n");
-    imprimir_si_hay_error(!argumento_solo_digitos, "Error: Cantidad erronea de parametros\n");
-
-    return (cant_argc_incorrecta || !argumento_solo_digitos);
+    return false;
 }
 
 #ifndef CORRECTOR
