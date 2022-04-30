@@ -1,3 +1,4 @@
-/home/lucas/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/lucas/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/lucas/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/fixcol.dir
+C:/Users/Lucas Williams/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Lucas Williams/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/fixcol.c.dir
+C:/Users/Lucas Williams/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/fixcol.dir
+C:/Users/Lucas Williams/CLionProjects/fixcol/cmake-build-debug/CMakeFiles/edit_cache.dir

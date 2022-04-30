@@ -1,7 +1,9 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/fixcol.dir/fixcol.c.o"
-  "fixcol"
+  "CMakeFiles/fixcol.dir/fixcol.c.obj"
+  "fixcol.exe"
+  "fixcol.exe.manifest"
   "fixcol.pdb"
+  "libfixcol.dll.a"
 )
 
 # Per-language clean rules from dependency scanning.

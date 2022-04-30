@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define CANT_CARACTERES 1
+#define ARGUMENTO_CARACTERES 1
 #define NOMBRE_ARCHIVO 2
 #define MAX_ARGC 3
 #define MIN_ARGC 2
@@ -68,9 +68,9 @@ void fixcol_wrapp(int argc, char* argv[], int columnas){
 int main(int argc, char* argv[]){
     /*Valido si la cantidad de argumentos son correctos (min 2, max 3) y si el segundo parametro son solo digitos!*/
     imprimir_si_hay_error(argc < MIN_ARGC || argc > MAX_ARGC, "Error: Cantidad erronea de parametros\n");
-    imprimir_si_hay_error(!solo_digitos(argv[CANT_CARACTERES]), "Error: Cantidad erronea de parametros\n");
+    imprimir_si_hay_error(!solo_digitos(argv[ARGUMENTO_CARACTERES]), "Error: Cantidad erronea de parametros\n");
 
-    int columnas = atoi(argv[CANT_CARACTERES]);
+    int columnas = atoi(argv[ARGUMENTO_CARACTERES]);
     if(columnas <= 0){
         return 0;
     }
