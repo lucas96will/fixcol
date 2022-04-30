@@ -63,8 +63,7 @@ void fixcol_wrapp(int argc, char* argv[], int columnas){
     }
 }
 
-#ifndef FUNCION_MAIN_
-#define FUNCION_MAIN_
+#ifndef CORRECTOR
 
 int main(int argc, char* argv[]){
     /*Valido si la cantidad de argumentos son correctos (min 2, max 3) y si el segundo parametro son solo digitos!*/
@@ -82,4 +81,4 @@ int main(int argc, char* argv[]){
     return 0;
 }
 
-#endif // FUNCION_MAIN_
+#endif // CORRECTOR
