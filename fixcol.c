@@ -20,11 +20,10 @@ bool solo_digitos(const char* s){
 }
 
 /*Imprime, por stderr, solo si el estado == true lo que hay en imprimir*/
-bool imprimir_si_hay_error(bool estado, char* imprimir){
+void imprimir_si_hay_error(bool estado, char* imprimir){
     if(estado){
         fprintf(stderr, "%s", imprimir);
     }
-    return estado;
 }
 
 void imprimir_columnas(char* str){
